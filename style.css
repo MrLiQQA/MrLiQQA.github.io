@@ -1,0 +1,457 @@
+:root {
+  --color-bg-midnight: #3b0615;
+  --color-bg-deep: #1a0006;
+  --color-firegold: #ffd66b;
+  --color-firegold-soft: #facc6b;
+  --color-card-border: rgba(255, 214, 135, 0.65);
+  --color-card-bg: rgba(56, 7, 18, 0.78);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--color-bg-deep);
+  color: #f9fafb;
+  background-image:
+    radial-gradient(circle at 10% -10%, rgba(255, 230, 180, 0.2), transparent 55%),
+    radial-gradient(circle at 100% 0%, rgba(248, 113, 113, 0.22), transparent 60%),
+    radial-gradient(circle at 0% 100%, rgba(248, 250, 252, 0.16), transparent 58%),
+    linear-gradient(145deg, #2b020b 0%, #4a0617 40%, #1a0006 100%),
+    url("./bg-fallback.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.bg-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(248, 250, 252, 0.14), transparent 55%),
+    radial-gradient(circle at 50% 82%, rgba(127, 29, 29, 0.65), transparent 60%),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.2), rgba(24, 6, 18, 0.88));
+  mix-blend-mode: soft-light;
+}
+
+.font-noto {
+  font-family: "Noto Sans SC", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+}
+
+.letter-card {
+  background:
+    radial-gradient(circle at 0% 0%, rgba(255, 248, 220, 0.38), transparent 45%),
+    radial-gradient(circle at 100% 100%, rgba(248, 113, 113, 0.4), transparent 50%),
+    var(--color-card-bg);
+  border: 1px solid var(--color-card-border);
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.85),
+    0 0 0 1px rgba(248, 250, 252, 0.16);
+  backdrop-filter: blur(26px) saturate(140%);
+  transform-origin: center;
+  transition:
+    box-shadow 280ms ease,
+    transform 280ms ease,
+    border-color 280ms ease,
+    background 280ms ease;
+}
+
+.letter-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 222, 173, 0.88),
+    rgba(248, 113, 113, 0.52),
+    rgba(250, 204, 107, 0.3)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 320ms ease;
+}
+
+.letter-card::after {
+  content: "";
+  position: absolute;
+  inset: 0.35rem;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 0 0, rgba(255, 214, 135, 0.55), transparent 55%),
+    radial-gradient(circle at 100% 0, rgba(252, 165, 165, 0.35), transparent 55%),
+    radial-gradient(circle at 0 100%, rgba(250, 250, 249, 0.12), transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(251, 191, 36, 0.38), transparent 60%);
+  opacity: 0.7;
+  mix-blend-mode: screen;
+}
+
+.letter-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow:
+    0 28px 90px rgba(24, 6, 18, 0.95),
+    0 0 0 1px rgba(255, 243, 207, 0.5);
+}
+
+.letter-card:hover::before {
+  opacity: 0.9;
+}
+
+.letter-card.opened {
+  transform: translateY(-6px) scale(1.02);
+}
+
+.letter-card.opened::before {
+  opacity: 1;
+}
+
+.letter-tag {
+  letter-spacing: 0.28em;
+}
+
+.envelope-shell {
+  position: relative;
+  width: min(280px, 88vw);
+  margin-inline: auto;
+  aspect-ratio: 4 / 2.7;
+  transform-origin: center;
+}
+
+.envelope-body,
+.envelope-top {
+  position: absolute;
+  inset: 12%;
+  border-radius: 18px;
+}
+
+.envelope-body {
+  top: 22%;
+  background: linear-gradient(135deg, #8a0c1a, #a8152a);
+  box-shadow:
+    0 18px 32px rgba(80, 7, 22, 0.9),
+    0 0 0 1px rgba(248, 187, 208, 0.6);
+  overflow: hidden;
+}
+
+.envelope-body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 10% 0%, rgba(255, 214, 135, 0.55), transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(248, 113, 113, 0.7), transparent 60%);
+  opacity: 0.7;
+}
+
+.envelope-top {
+  bottom: 52%;
+  border-radius: 18px 18px 12px 12px;
+  background: radial-gradient(circle at 50% 0%, #ffd66b, #fbbf24);
+  clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+  box-shadow: 0 12px 30px rgba(88, 28, 26, 0.9);
+}
+
+.envelope-seal {
+  position: absolute;
+  inset-inline: 46%;
+  bottom: 30%;
+  width: 2.35rem;
+  height: 2.35rem;
+  margin-inline: auto;
+  border-radius: 999px;
+  background: radial-gradient(circle at 20% 20%, #fefce8, #f97316);
+  box-shadow:
+    0 0 0 1px rgba(248, 250, 252, 0.65),
+    0 12px 24px rgba(88, 28, 26, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #7f1d1d;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+}
+
+.envelope-seal::before {
+  content: "福";
+}
+
+.btn-primary {
+  background-image:
+    radial-gradient(circle at 0% 0%, #fff9db, transparent 55%),
+    radial-gradient(circle at 100% 100%, #fed7aa, transparent 55%),
+    linear-gradient(135deg, #ffd66b, #faae4a, #f97316, #c81e1e);
+  color: #4a0f12;
+  box-shadow:
+    0 10px 25px rgba(220, 38, 38, 0.45),
+    0 0 0 1px rgba(254, 243, 199, 0.9);
+  transition:
+    transform 180ms ease,
+    box-shadow 220ms ease,
+    filter 220ms ease,
+    background-position 220ms ease;
+  background-size: 180% 180%;
+  background-position: 0% 50%;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px) translateX(1px);
+  box-shadow:
+    0 16px 35px rgba(185, 28, 28, 0.7),
+    0 0 0 1px rgba(254, 249, 195, 0.95);
+  filter: brightness(1.03);
+  background-position: 100% 50%;
+}
+
+.btn-primary:active {
+  transform: translateY(0px) translateX(0px) scale(0.99);
+  box-shadow:
+    0 8px 18px rgba(88, 28, 26, 0.85),
+    0 0 0 1px rgba(254, 249, 195, 0.95);
+}
+
+.btn-primary[aria-disabled="true"],
+.btn-primary:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  box-shadow:
+    0 8px 18px rgba(88, 28, 26, 0.85),
+    0 0 0 1px rgba(148, 27, 18, 0.7);
+}
+
+.btn-secondary {
+  background: rgba(67, 7, 13, 0.75);
+  border: 1px solid rgba(254, 202, 202, 0.85);
+  box-shadow:
+    0 12px 26px rgba(67, 7, 13, 0.9),
+    0 0 0 1px rgba(24, 6, 18, 0.9);
+  transition:
+    background 200ms ease,
+    color 200ms ease,
+    transform 180ms ease,
+    box-shadow 200ms ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(127, 29, 29, 0.9);
+  box-shadow:
+    0 16px 30px rgba(67, 7, 13, 0.95),
+    0 0 0 1px rgba(254, 202, 202, 0.95);
+  transform: translateY(-1px);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
+}
+
+.letter-text {
+  text-shadow:
+    0 0 12px rgba(0, 0, 0, 0.75),
+    0 0 28px rgba(127, 29, 29, 0.9);
+}
+
+.letter-text.glow {
+  color: #fff7da;
+  text-shadow:
+    0 0 10px rgba(255, 214, 135, 0.7),
+    0 0 28px rgba(248, 181, 106, 0.95),
+    0 0 60px rgba(217, 70, 70, 0.9);
+  animation: letter-shimmer 4.5s ease-in-out infinite alternate;
+}
+
+@keyframes letter-shimmer {
+  0% {
+    text-shadow:
+      0 0 8px rgba(255, 214, 135, 0.6),
+      0 0 20px rgba(248, 181, 106, 0.6),
+      0 0 32px rgba(217, 70, 70, 0.6);
+  }
+  100% {
+    text-shadow:
+      0 0 14px rgba(255, 239, 186, 0.9),
+      0 0 34px rgba(252, 211, 77, 0.95),
+      0 0 70px rgba(220, 38, 38, 0.95);
+  }
+}
+
+/* Lantern decorations */
+.lantern {
+  position: absolute;
+  top: 1.6rem;
+  width: 68px;
+  height: 120px;
+  pointer-events: none;
+  transform-origin: top center;
+  animation: lantern-sway 6s ease-in-out infinite;
+  filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.55));
+}
+
+.lantern-left {
+  left: max(0.75rem, 4vw);
+}
+
+.lantern-right {
+  right: max(0.75rem, 4vw);
+  animation-delay: -3s;
+}
+
+.lantern-glow {
+  position: absolute;
+  inset: -30%;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(248, 181, 106, 0.4), transparent 60%);
+  opacity: 0.85;
+}
+
+.lantern-body {
+  position: absolute;
+  inset-inline: 18%;
+  top: 14px;
+  height: 72px;
+  border-radius: 999px;
+  background-image: linear-gradient(180deg, #fed7aa, #f97316, #c81e1e);
+  box-shadow:
+    0 0 0 1px rgba(124, 45, 18, 0.8),
+    0 12px 26px rgba(88, 28, 26, 0.95);
+  overflow: hidden;
+}
+
+.lantern-inner {
+  position: absolute;
+  inset: 6px 9px;
+  border-radius: 999px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgba(248, 250, 252, 0.08) 0,
+    rgba(248, 250, 252, 0.08) 1px,
+    transparent 1px,
+    transparent 6px
+  );
+}
+
+.lantern-tassel {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  width: 2px;
+  height: 26px;
+  transform: translateX(-50%);
+  background: linear-gradient(to bottom, #991b1b, #f97316);
+}
+
+.lantern-tassel::before,
+.lantern-tassel::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  width: 18px;
+  height: 10px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 50% 0, #facc6b, #f97316);
+}
+
+.lantern-tassel::before {
+  left: -18px;
+}
+
+.lantern-tassel::after {
+  right: -18px;
+}
+
+@keyframes lantern-sway {
+  0%,
+  100% {
+    transform: rotate(-2deg) translateY(0);
+  }
+  50% {
+    transform: rotate(2.5deg) translateY(4px);
+  }
+}
+
+/* Confetti */
+.confetti-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 40;
+}
+
+.confetti-piece {
+  position: absolute;
+  width: 7px;
+  height: 14px;
+  border-radius: 2px;
+  opacity: 0;
+  animation-name: confetti-fall;
+  animation-timing-function: cubic-bezier(0.12, 0.45, 0.32, 0.98);
+  animation-fill-mode: forwards;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-10vh) rotateZ(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(105vh) rotateZ(320deg);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .letter-card {
+    padding-inline: 1.25rem;
+  }
+
+  .envelope-shell {
+    width: min(240px, 90vw);
+  }
+
+  .lantern {
+    top: 0.75rem;
+    width: 52px;
+    height: 96px;
+    opacity: 0.8;
+  }
+}
+
+@supports (background-image: image-set(url("./bg_festive.webp") type("image/webp"), url("./bg-fallback.jpg") type("image/jpeg"))) {
+  body {
+    background-image:
+      radial-gradient(circle at 10% -10%, rgba(255, 230, 180, 0.2), transparent 55%),
+      radial-gradient(circle at 100% 0%, rgba(248, 113, 113, 0.22), transparent 60%),
+      radial-gradient(circle at 0% 100%, rgba(248, 250, 252, 0.16), transparent 58%),
+      linear-gradient(145deg, #2b020b 0%, #4a0617 40%, #1a0006 100%),
+      image-set(
+        url("./bg_festive.webp") type("image/webp"),
+        url("./bg-fallback.jpg") type("image/jpeg")
+      );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

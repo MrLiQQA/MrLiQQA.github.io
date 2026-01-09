@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>庆祝跨年 · 新岁来信</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              noto: ['"Noto Sans SC"', 'system-ui', 'sans-serif'],
+            },
+            colors: {
+              midnight: '#3b0615',
+              firegold: '#ffd66b',
+              firegoldSoft: '#facc6b',
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body class="font-noto antialiased text-slate-50">
+    <main
+      class="relative min-h-screen flex items-center justify-center px-4 py-8"
+      aria-labelledby="page-title"
+    >
+      <div class="bg-overlay" aria-hidden="true"></div>
+
+      <div class="lantern lantern-left" aria-hidden="true">
+        <div class="lantern-glow"></div>
+        <div class="lantern-body">
+          <div class="lantern-inner"></div>
+        </div>
+        <div class="lantern-tassel"></div>
+      </div>
+      <div class="lantern lantern-right" aria-hidden="true">
+        <div class="lantern-glow"></div>
+        <div class="lantern-body">
+          <div class="lantern-inner"></div>
+        </div>
+        <div class="lantern-tassel"></div>
+      </div>
+
+      <section
+        id="letter-card"
+        class="relative letter-card max-w-md w-full p-6 sm:p-8 rounded-3xl border border-white/20 bg-white/10 backdrop-blur-2xl shadow-[0_18px_60px_rgba(0,0,0,0.65)] text-center flex flex-col gap-5 sm:gap-6"
+      >
+        <div
+          class="flex items-center justify-center gap-2 text-xs sm:text-sm tracking-[0.3em] uppercase text-white/70"
+        >
+          <span
+            class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-white/10 border border-white/20 shadow-sm"
+          >
+            <span class="material-symbols-outlined text-[16px] leading-none">
+              mail
+            </span>
+          </span>
+          <span class="letter-tag">跨年来信</span>
+        </div>
+
+        <header class="space-y-2">
+          <h1
+            id="page-title"
+            class="text-2xl sm:text-3xl md:text-[2rem] font-semibold tracking-wide text-firegold drop-shadow-[0_0_18px_rgba(250,204,107,0.55)]"
+          >
+            旧岁将别 · 新元将至
+          </h1>
+          <p class="text-sm sm:text-base text-slate-100/85 leading-relaxed">
+            在这一刻，把满城烟火与山海星光，折叠进一封只写给你的新岁来信。
+          </p>
+        </header>
+
+        <div class="relative mt-1 mb-1">
+          <div class="envelope-shell">
+            <div class="envelope-top"></div>
+            <div class="envelope-body"></div>
+            <div class="envelope-seal"></div>
+          </div>
+        </div>
+
+        <div class="mt-1 space-y-3" aria-live="polite">
+          <p
+            id="letter-text"
+            class="min-h-[3.5rem] sm:min-h-[4rem] text-base leading-relaxed text-slate-50/95 letter-text transition-colors duration-500"
+          ></p>
+          <p
+            id="helper-text"
+            class="text-xs sm:text-[0.8rem] text-slate-100/70 tracking-wide"
+          >
+            轻按「打开信件」，让今年最后一串烟火，为你写下新年的第一句祝福。
+          </p>
+        </div>
+
+        <div
+          class="mt-2 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
+        >
+          <button
+            id="open-btn"
+            type="button"
+            class="btn-primary group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full px-6 py-2.5 text-sm sm:text-base font-medium tracking-wide focus:outline-none focus-visible:ring-2 focus-visible:ring-firegold/80 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+          >
+            <span
+              class="material-symbols-outlined text-[18px] sm:text-[20px] transition-transform duration-300 group-hover:translate-x-0.5"
+            >
+              unfold_more
+            </span>
+            <span>打开信件</span>
+          </button>
+
+          <button
+            id="restart-btn"
+            type="button"
+            class="btn-secondary hidden w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full px-5 py-2 text-xs sm:text-sm font-medium tracking-wide text-slate-100/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+          >
+            <span class="material-symbols-outlined text-[18px] sm:text-[19px]">
+              replay
+            </span>
+            <span>重看</span>
+          </button>
+        </div>
+
+        <p
+          class="mt-1 text-[10px] sm:text-xs text-slate-100/60 tracking-widest uppercase"
+        >
+          Happy New Year · 山海为期 · 烟火为证
+        </p>
+      </section>
+    </main>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
