@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>520 · 爱你</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="bg-glow" aria-hidden="true"></div>
+    <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+    <!-- 第一幕：大字渐放 -->
+    <section id="stage-zoom" class="stage stage-active" aria-live="polite">
+      <p id="stage-hint" class="stage-hint"></p>
+      <div id="zoom-stage" class="zoom-stage">
+        <span id="zoom-text" class="zoom-text" aria-hidden="true"></span>
+      </div>
+      <p id="date-badge" class="date-badge"></p>
+    </section>
+
+    <!-- 第二幕：主标题 + 情书 -->
+    <section id="stage-content" class="stage" hidden>
+      <header class="content-header">
+        <h1 id="hero-line" class="hero-line"></h1>
+        <p id="subtitle" class="subtitle"></p>
+      </header>
+
+      <div class="letter-panel">
+        <p id="letter-tag" class="letter-tag"></p>
+        <p id="letter-text" class="letter-text"></p>
+      </div>
+
+      <p id="footer-text" class="footer-text"></p>
+
+      <div class="action-row">
+        <button id="restart-btn" type="button" class="btn-ghost"></button>
+      </div>
+    </section>
+
+    <script src="../config.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
